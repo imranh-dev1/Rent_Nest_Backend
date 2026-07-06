@@ -18,6 +18,26 @@ const createCategorySchema = z.object({
     }),
 });
 
+
+const updateCategorySchema = z.object({
+    body: z.object({
+        name: z
+            .string()
+            .trim()
+            .min(2, "Category name must be at least 2 characters.")
+            .max(100, "Category name cannot exceed 100 characters.")
+            .optional(),
+
+        description: z
+            .string()
+            .trim()
+            .max(255, "Description cannot exceed 255 characters.")
+            .optional(),
+    }),
+});
+
+
 export const categoryValidation = {
-    createCategorySchema
+    createCategorySchema,
+    updateCategorySchema
 };
