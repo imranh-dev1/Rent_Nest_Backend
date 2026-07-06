@@ -1,7 +1,7 @@
 import { UserStatus } from "../../../generated/prisma/enums";
 import config from "../../config";
 import { prisma } from "../../lib/prisma";
-import { ILoginUser, IRegisterUser } from "./auth.interface";
+import { ILoginUser, IRegisterUser, IUpdateProfile } from "./auth.interface";
 import bcrypt from "bcrypt";
 import { jwtUtils } from "../../utils/jwtService";
 import { SignOptions } from "jsonwebtoken";
@@ -95,8 +95,28 @@ const getMe = async (userId: string) => {
     return user;
 };
 
+const updateMe = async (userId: string, payload: IUpdateProfile) => {
+    const { name, phone, profileImg } = payload;
+    const user = await prisma.user.update({
+        where: {
+            id: userId
+        },
+        data: {
+            name,
+            phone,
+            profileImg
+        },
+        omit: {
+            password: true
+        }
+    });
+
+    return user;
+};
+
 export const authService = {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    updateMe
 };

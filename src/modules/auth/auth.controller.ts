@@ -44,8 +44,20 @@ const getMe = asyncHandler(async (req: Request, res: Response) => {
     });
 });
 
+const updateMe = asyncHandler(async (req: Request, res: Response) => {
+    const result = await authService.updateMe(req.user!.id, req.body);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "User profile updated successfully....",
+        data: result
+    });
+});
+
 export const authController = {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    updateMe
 };
