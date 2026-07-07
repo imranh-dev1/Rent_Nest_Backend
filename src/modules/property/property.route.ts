@@ -1,8 +1,12 @@
 import { Router } from "express";
 import { propertyController } from "./property.controller";
+import { auth } from "../../middlewares/auth";
+import { Role } from "../../../generated/prisma/enums";
+import validateRequest from "../../middlewares/validateRequest";
+import { propertyValidation } from "./property.validation";
 
 const router = Router();
 
-router.post("/", propertyController.createProperty);
+router.post("/", auth(Role.LANDLORD), validateRequest(propertyValidation.createPropertySchema), propertyController.createProperty);
 
 export const propertyRoute = router;
