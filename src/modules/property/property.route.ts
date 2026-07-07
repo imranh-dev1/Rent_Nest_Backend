@@ -13,6 +13,7 @@ router.get("/my-properties", auth(Role.LANDLORD), propertyController.getMyProper
 router.get("/:id", propertyController.getPropertyById);
 router.patch("/:id", auth(Role.LANDLORD), validateRequest(propertyValidation.updatePropertySchema), propertyController.updateProperty);
 router.delete("/:id", auth(Role.LANDLORD), propertyController.deleteProperty);
+router.patch("/:id/availability", auth(Role.LANDLORD), validateRequest(propertyValidation.changeAvailabilitySchema), propertyController.changeAvailability);
 
 
 export const propertyRoute = router;

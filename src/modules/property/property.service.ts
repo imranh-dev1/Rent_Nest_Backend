@@ -1,5 +1,5 @@
 import status from "http-status";
-import { Prisma } from "../../../generated/prisma/client";
+import { Prisma, PropertyAvailability } from "../../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 import { ICreateProperty, IPropertyQuery, IUpdateProperty } from "./property.interface";
 import AppError from "../../errors/AppError";
@@ -229,11 +229,44 @@ const deleteProperty = async (propertyId: string, landlordId: string) => {
     return null;
 };
 
+const changeAvailability = async (propertyId: string, landlordId: string, availability: PropertyAvailability) => {
+    const property = await prisma.property.findUniqueOrThrow({
+        where: {
+            id: propertyId,
+        },
+    });
+
+    if (property.landlordId !== landlordId) {
+        throw new AppError(status.FORBIDDEN, "You do not have permission to perform this action.");
+    }
+
+    if (property.availability === PropertyAvailability.RENTED) {
+        throw new AppError(status.BAD_REQUEST, "This property is currently rented and its availability cannot be changed manually.");
+    }
+
+    if (property.availability === availability) {
+        throw new AppError(status.BAD_REQUEST, `Property is already marked as ${availability.toLowerCase()}.`);
+    }
+
+    const result = await prisma.property.update({
+        where: {
+            id: propertyId,
+        },
+        data: {
+            availability,
+        },
+    });
+
+    return result;
+};
+
+
 export const propertyService = {
     createProperty,
     getAllProperties,
     getPropertyById,
     updateProperty,
     deleteProperty,
-    getMyProperties
+    getMyProperties,
+    changeAvailability
 };

@@ -79,7 +79,22 @@ const deleteProperty = asyncHandler(async (req: Request, res: Response) => {
         message: "Property deletd successfully....",
         data: result
     });
-})
+});
+
+const changeAvailability = asyncHandler(async (req: Request, res: Response) => {
+    const propertyId = req.params.id as string;
+    const landlordId = req.user?.id!;
+    const { availability } = req.body;
+
+    const property = await propertyService.changeAvailability(propertyId, landlordId, availability);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Property availability updated successfully....",
+        data: property
+    });
+});
 
 export const propertyController = {
     createProperty,
@@ -87,5 +102,6 @@ export const propertyController = {
     getPropertyById,
     updateProperty,
     deleteProperty,
-    getMyProperties
+    getMyProperties,
+    changeAvailability
 };

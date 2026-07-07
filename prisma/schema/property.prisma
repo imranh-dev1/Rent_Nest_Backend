@@ -10,7 +10,7 @@ model Property {
     area         Int
     amenities    String[]
     images       String[]
-    availability Boolean  @default(true)
+    availability PropertyAvailability  @default(AVAILABLE)
 
     landlordId String
     categoryId String

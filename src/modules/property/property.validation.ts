@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { PropertyAvailability } from "../../../generated/prisma/enums";
 
 const createPropertySchema = z.object({
     body: z.object({
@@ -59,18 +60,34 @@ const createPropertySchema = z.object({
 
         categoryId: z
             .string()
-            .trim()
-            .min(1, "Category is required."),
+            .uuid("Invalid category id."),
     }),
 });
 
 const updatePropertySchema = z.object({
-    body: createPropertySchema.shape.body.partial().extend({
-        availability: z.boolean().optional(),
+    params: z.object({
+        id: z.string().uuid("Invalid property id."),
+    }),
+
+    body: createPropertySchema.shape.body
+        .partial()
+        .extend({
+            availability: z.nativeEnum(PropertyAvailability).optional(),
+        }),
+});
+
+const changeAvailabilitySchema = z.object({
+    params: z.object({
+        id: z.string().uuid("Invalid property id."),
+    }),
+
+    body: z.object({
+        availability: z.nativeEnum(PropertyAvailability),
     }),
 });
 
 export const propertyValidation = {
     createPropertySchema,
     updatePropertySchema,
+    changeAvailabilitySchema,
 };
