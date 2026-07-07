@@ -8,5 +8,6 @@ import { propertyValidation } from "./property.validation";
 const router = Router();
 
 router.post("/", auth(Role.LANDLORD), validateRequest(propertyValidation.createPropertySchema), propertyController.createProperty);
+router.get("/", propertyController.getAllProperties);
 
 export const propertyRoute = router;

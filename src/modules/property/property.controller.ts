@@ -12,11 +12,25 @@ const createProperty = asyncHandler(async (req: Request, res: Response) => {
     sendResponse(res, {
         success: true,
         statusCode: status.CREATED,
-        message: "Property create sucssesfully...",
+        message: "Property create successfully....",
         data: result
     })
 });
 
+const getAllProperties = asyncHandler(async (req: Request, res: Response) => {
+    const query = req.query;
+    const result = await propertyService.getAllProperties(query);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Properties retrieved successfully....",
+        data: result.data,
+        meta: result.meta
+    });
+});
+
 export const propertyController = {
-    createProperty
+    createProperty,
+    getAllProperties
 };
