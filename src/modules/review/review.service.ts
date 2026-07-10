@@ -1,6 +1,6 @@
 import status from "http-status";
 import { prisma } from "../../lib/prisma";
-import { ICreateReview } from "./review.interface";
+import { ICreateReview, IUpdateReview } from "./review.interface";
 import AppError from "../../errors/AppError";
 import { RentalStatus } from "../../../generated/prisma/enums";
 
@@ -90,7 +90,7 @@ const getPropertyReviews = async (propertyId: string) => {
     return reviews;
 };
 
-const updateReview = async (reviewId: string, tenantId: string, payload: ICreateReview) => {
+const updateReview = async (reviewId: string, tenantId: string, payload: IUpdateReview) => {
     const review = await prisma.review.findUniqueOrThrow({
         where: {
             id: reviewId,

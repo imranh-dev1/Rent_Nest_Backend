@@ -9,6 +9,7 @@ import { globalErrorHandler } from './errors/globalErrorHandler';
 import { propertyRoute } from './modules/property/property.route';
 import { rentalRequestsRoute } from './modules/rental/rental.route';
 import { reviewRoute } from './modules/review/review.routes';
+import { adminRoute } from './modules/admin/admin.routes';
 
 const app: Application = express();
 
@@ -31,6 +32,7 @@ app.use("/api/categories", categoryRoute);
 app.use("/api/properties", propertyRoute);
 app.use("/api/rental-requests", rentalRequestsRoute);
 app.use("/api/reviews", reviewRoute);
+app.use("/api/admin", adminRoute);
 
 
 app.use(notFound);
