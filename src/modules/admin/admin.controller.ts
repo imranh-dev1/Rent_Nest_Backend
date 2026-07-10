@@ -80,14 +80,48 @@ const deleteProperty = asyncHandler(async (req: Request, res: Response) => {
     });
 });
 
-const getRentalRequests = asyncHandler(async (req: Request, res: Response) => {
-    const landlordId = req.user!.id;
-    const result = await rentalRequestsService.getLandlordRentalRequests(landlordId);
+const getAllRentalRequests = asyncHandler(async (req: Request, res: Response) => {
+    const result = await adminService.getAllRentalRequests(req.query);
 
     sendResponse(res, {
         success: true,
         statusCode: status.OK,
-        message: "Rental requests retrieved successfully....",
+        message: "Rental requests retrieved successfully.",
+        meta: result.meta,
+        data: result.data,
+    });
+});
+
+const getRentalRequestById = asyncHandler(async (req: Request, res: Response) => {
+    const result = await adminService.getRentalRequestById(req.params.id as string);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Rental request retrieved successfully.",
+        data: result,
+    });
+});
+
+const getAllReviews = asyncHandler(async (req: Request, res: Response) => {
+    const result = await adminService.getAllReviews(req.query);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Reviews retrieved successfully.",
+        meta: result.meta,
+        data: result.data,
+    });
+});
+
+const deleteReview = asyncHandler(async (req: Request, res: Response) => {
+    const result = await adminService.deleteReview(req.params.id as string);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Review deleted successfully.",
         data: result,
     });
 });
@@ -98,6 +132,9 @@ export const adminController = {
     updateUserStatus,
     getAllProperties,
     getPropertyById,
-    getRentalRequests,
-    deleteProperty
+    getAllRentalRequests,
+    deleteProperty,
+    getRentalRequestById,
+    getAllReviews,
+    deleteReview
 }

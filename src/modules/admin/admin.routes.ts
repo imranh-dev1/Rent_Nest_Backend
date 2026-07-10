@@ -14,7 +14,11 @@ router.patch("/users/:id/status", auth(Role.ADMIN), validateRequest(adminValidat
 router.get("/properties", auth(Role.ADMIN), adminController.getAllProperties);
 router.get("/properties/:id", auth(Role.ADMIN), adminController.getPropertyById);
 router.delete("/properties/:id", auth(Role.ADMIN), adminController.deleteProperty);
-router.get("/rentals", auth(Role.ADMIN), adminController.getRentalRequests);
+router.get("/rental-requests", auth(Role.ADMIN), adminController.getAllRentalRequests);
+router.get("/rental-requests/:id", auth(Role.ADMIN), adminController.getRentalRequestById);
+router.get("/reviews", auth(Role.ADMIN), adminController.getAllReviews);
+router.delete("/reviews/:id", auth(Role.ADMIN), adminController.deleteReview);
+
 
 
 

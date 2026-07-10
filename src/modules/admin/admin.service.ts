@@ -218,9 +218,210 @@ const deleteProperty = async (propertyId: string) => {
     return null;
 };
 
+const getAllRentalRequests = async (query: Record<string, any>) => {
+    const {
+        page = 1,
+        limit = 10,
+        status,
+        sortBy = "createdAt",
+        sortOrder = "desc",
+    } = query;
+
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const where: Prisma.RentalRequestWhereInput = {};
+
+    if (status) {
+        where.status = status as RentalStatus;
+    }
+
+    const [requests, total] = await Promise.all([
+        prisma.rentalRequest.findMany({
+            where,
+            skip,
+            take: Number(limit),
+            orderBy: {
+                [sortBy]: sortOrder,
+            },
+            include: {
+                tenant: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        phone: true,
+                    },
+                },
+                property: {
+                    include: {
+                        landlord: {
+                            select: {
+                                id: true,
+                                name: true,
+                                email: true,
+                            },
+                        },
+                        category: {
+                            select: {
+                                id: true,
+                                name: true,
+                            },
+                        },
+                    },
+                },
+            },
+        }),
+
+        prisma.rentalRequest.count({
+            where,
+        }),
+    ]);
+
+    return {
+        meta: {
+            page: Number(page),
+            limit: Number(limit),
+            total,
+            totalPage: Math.ceil(total / Number(limit)),
+        },
+        data: requests,
+    };
+};
+
+const getRentalRequestById = async (id: string) => {
+    const rentalRequest = await prisma.rentalRequest.findUnique({
+        where: {
+            id,
+        },
+        include: {
+            tenant: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    phone: true,
+                    profileImg: true,
+                },
+            },
+            property: {
+                include: {
+                    landlord: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true,
+                            phone: true,
+                        },
+                    },
+                    category: {
+                        select: {
+                            id: true,
+                            name: true,
+                            description: true,
+                        },
+                    },
+                },
+            },
+        },
+    });
+
+    if (!rentalRequest) {
+        throw new AppError(status.NOT_FOUND, "Rental request not found.");
+    }
+
+    return rentalRequest;
+};
+
+const getAllReviews = async (query: Record<string, any>) => {
+    const {
+        page = 1,
+        limit = 10,
+        rating,
+        sortBy = "createdAt",
+        sortOrder = "desc",
+    } = query;
+
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const where: Prisma.ReviewWhereInput = {};
+
+    if (rating) {
+        where.rating = Number(rating);
+    }
+
+    const [reviews, total] = await Promise.all([
+        prisma.review.findMany({
+            where,
+            skip,
+            take: Number(limit),
+            orderBy: {
+                [sortBy]: sortOrder,
+            },
+            include: {
+                tenant: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                    },
+                },
+                property: {
+                    select: {
+                        id: true,
+                        title: true,
+                        city: true,
+                        rentAmount: true,
+                    },
+                },
+            },
+        }),
+
+        prisma.review.count({
+            where,
+        }),
+    ]);
+
+    return {
+        meta: {
+            page: Number(page),
+            limit: Number(limit),
+            total,
+            totalPage: Math.ceil(total / Number(limit)),
+        },
+        data: reviews,
+    };
+};
+
+const deleteReview = async (reviewId: string) => {
+    const review = await prisma.review.findUnique({
+        where: {
+            id: reviewId,
+        },
+    });
+
+    if (!review) {
+        throw new AppError(
+            status.NOT_FOUND,
+            "Review not found."
+        );
+    }
+
+    const deletedReview = await prisma.review.delete({
+        where: {
+            id: reviewId,
+        },
+    });
+
+    return deletedReview;
+};
+
 export const adminService = {
     getDashboardStats,
     getAllUsers,
     updateUserStatus,
-    deleteProperty
+    deleteProperty,
+    getAllRentalRequests,
+    getRentalRequestById,
+    getAllReviews,
+    deleteReview
 }
