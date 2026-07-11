@@ -115,8 +115,8 @@ JWT_REFRESH_SECRET="replace-with-another-long-random-secret"
 JWT_ACCESS_EXPIRES_IN="15m"
 JWT_REFRESH_EXPIRES_IN="30d"
 
-STRIPE_SECRET_KEY="sk_test_xxxxxxxxxxxxxxxxxxxxxxxx"
-STRIPE_WEBHOOK_SECRET="whsec_xxxxxxxxxxxxxxxxxxxxxxxx"
+STRIPE_SECRET_KEY=""
+STRIPE_WEBHOOK_SECRET=""
 
 ADMIN_EMAIL="admin@rentnest.com"
 ADMIN_PASSWORD="Admin@12345"
