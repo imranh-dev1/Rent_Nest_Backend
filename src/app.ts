@@ -10,6 +10,7 @@ import { propertyRoute } from './modules/property/property.route';
 import { rentalRequestsRoute } from './modules/rental/rental.route';
 import { reviewRoute } from './modules/review/review.routes';
 import { adminRoute } from './modules/admin/admin.routes';
+import { paymentRoute } from './modules/payment/payment.router';
 
 const app: Application = express();
 
@@ -17,6 +18,8 @@ app.use(cors({
     origin: config.app_url,
     credentials: true
 }));
+
+app.use("/api/payments/webhook", express.raw({ type: "application/json" }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +36,7 @@ app.use("/api/properties", propertyRoute);
 app.use("/api/rental-requests", rentalRequestsRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/payments", paymentRoute);
 
 
 app.use(notFound);

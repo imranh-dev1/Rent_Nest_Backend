@@ -185,7 +185,7 @@ const updateRentalRequestStatus = async (rentalRequestId: string, landlordId: st
                     id: rentalRequest.propertyId,
                 },
                 data: {
-                    availability: PropertyAvailability.RENTED,
+                    availability: PropertyAvailability.AVAILABLE,
                 },
             });
 

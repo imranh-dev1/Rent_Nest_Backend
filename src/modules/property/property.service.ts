@@ -29,7 +29,6 @@ const getAllProperties = async (queries: IPropertyQuery) => {
 
     const where: Prisma.PropertyWhereInput = {};
 
-    // Search
     if (search) {
         where.OR = [
             {
@@ -51,27 +50,23 @@ const getAllProperties = async (queries: IPropertyQuery) => {
                 },
             },
         ];
-    }
+    };
 
-    // Category Filter
     if (categoryId) {
         where.categoryId = categoryId;
-    }
+    };
 
-    // City Filter
     if (city) {
         where.city = {
             contains: city,
             mode: "insensitive",
         };
-    }
+    };
 
-    // Availability Filter
     if (availability !== undefined) {
-        where.availability = availability;
-    }
+        where.availability = availability as PropertyAvailability;
+    };
 
-    // Price Filter
     if (minPrice || maxPrice) {
         where.rentAmount = {
             ...(minPrice && { gte: Number(minPrice) }),

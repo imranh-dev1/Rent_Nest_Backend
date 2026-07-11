@@ -1,3 +1,5 @@
+import { PropertyAvailability } from "../../../generated/prisma/enums";
+
 export interface ICreateProperty {
     title: string;
     description: string;
@@ -23,7 +25,7 @@ export interface IUpdateProperty {
     area?: number;
     amenities?: string[];
     images?: string[];
-    availability?: boolean;
+    availability?: PropertyAvailability;
     categoryId?: string;
 };
 
@@ -40,7 +42,7 @@ export interface IPropertyQuery {
     minPrice?: number;
     maxPrice?: number;
 
-    availability?: boolean;
+    availability?: PropertyAvailability;
 
     sortBy?: string;
     sortOrder?: "asc" | "desc";

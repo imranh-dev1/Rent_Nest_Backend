@@ -45,7 +45,9 @@ const getLandlordRentalRequests = asyncHandler(async (req: Request, res: Respons
 const updateRentalRequestStatus = asyncHandler(async (req: Request, res: Response) => {
     const rentalId = req.params.id;
     const landlordId = req.user!.id;
-    const { rentalStatus } = req.body;
+    const { status: rentalStatus } = req.body;
+
+    console.log(rentalId, landlordId, status)
 
     const result = await rentalRequestsService.updateRentalRequestStatus(rentalId as string, landlordId, rentalStatus);
 
