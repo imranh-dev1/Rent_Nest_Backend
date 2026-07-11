@@ -12,8 +12,8 @@ router.post("/create", auth(Role.TENANT), validateRequest(paymentValidation.crea
 
 router.post("/webhook", paymentController.handleWebhook);
 
-// router.get("/", auth(Role.TENANT), paymentController.getMyPayments);
+router.get("/", auth(Role.TENANT), paymentController.getMyPayments);
 
-// router.get("/:id", auth(Role.TENANT), paymentController.getPaymentById);
+router.get("/:id", auth(Role.TENANT), paymentController.getPaymentById);
 
 export const paymentRoute = router;

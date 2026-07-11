@@ -33,38 +33,35 @@ const handleWebhook = asyncHandler(async (req: Request, res: Response) => {
 
 });
 
-// const getMyPayments = asyncHandler(async (req: Request, res: Response) => {
-//     const tenantId = req.user.id;
+const getMyPayments = asyncHandler(async (req: Request, res: Response) => {
+    const tenantId = req.user!.id;
 
-//     const result = await paymentService.getMyPayments(tenantId);
+    const result = await paymentService.getMyPayments(tenantId as string);
 
-//     sendResponse(res, {
-//         success: true,
-//         statusCode: status.OK,
-//         message: "Payments retrieved successfully.",
-//         data: result,
-//     });
-// });
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Payments retrieved successfully.",
+        data: result,
+    });
+});
 
-// const getPaymentById = asyncHandler(async (req: Request, res: Response) => {
-//     const tenantId = req.user.id;
+const getPaymentById = asyncHandler(async (req: Request, res: Response) => {
+    const tenantId = req.user!.id;
 
-//     const result = await paymentService.getPaymentById(
-//         tenantId,
-//         req.params.id
-//     );
+    const result = await paymentService.getPaymentById(req.params.id as string, tenantId);
 
-//     sendResponse(res, {
-//         success: true,
-//         statusCode: status.OK,
-//         message: "Payment retrieved successfully.",
-//         data: result,
-//     });
-// });
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Payment retrieved successfully.",
+        data: result,
+    });
+});
 
 export const paymentController = {
     createPayment,
     handleWebhook,
-    // getMyPayments,
-    // getPaymentById,
+    getMyPayments,
+    getPaymentById,
 };

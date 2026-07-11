@@ -117,45 +117,65 @@ const handleWebhook = async (payload: Buffer, signature: string) => {
     }
 };
 
-// const getMyPayments = async (userId: string, role: string) => {
-//     const where = role === 'ADMIN' ? {} : { rentalRequest: { tenantId: userId } };
+const getMyPayments = async (userId: string) => {
+    return prisma.payment.findMany({
+        where: {
+            tenantId: userId
+        },
+        include: {
+            rentalRequest: {
+                include: {
+                    property: {
+                        select:
+                        {
+                            id: true,
+                            title: true,
+                            city: true
+                        }
+                    },
+                },
+            },
+        },
+        orderBy: { createdAt: 'desc' },
+    });
+};
 
-//     return prisma.payment.findMany({
-//         where,
-//         include: {
-//             rentalRequest: {
-//                 include: {
-//                     property: { select: { id: true, title: true, city: true } },
-//                 },
-//             },
-//         },
-//         orderBy: { createdAt: 'desc' },
-//     });
-// };
+const getPaymentById = async (paymentId: string, userId: string) => {
 
-// const getPaymentById = async (paymentId: string, userId: string, role: string) => {
-//     const payment = await prisma.payment.findUniqueOrThrow({
-//         where: { id: paymentId },
-//         include: {
-//             rentalRequest: {
-//                 include: {
-//                     property: true,
-//                     tenant: { select: { id: true, name: true, email: true } },
-//                 },
-//             },
-//         },
-//     });
+    // console.log(paymentId, userId)
 
-//     if (role !== 'ADMIN' && payment.rentalRequest.tenantId !== userId) {
-//         throw new AppError(status.FORBIDDEN, 'You do not have access to this payment.');
-//     }
+    const payment = await prisma.payment.findUniqueOrThrow({
+        where: {
+            id: paymentId,
+            tenantId: userId
+        },
+        include: {
+            rentalRequest: {
+                include: {
+                    property: true,
+                    tenant: {
+                        select:
+                        {
+                            id: true,
+                            name: true,
+                            email: true
+                        }
+                    },
+                },
+            },
+        },
+    });
 
-//     return payment;
-// };
+    if (payment.rentalRequest.tenantId !== userId) {
+        throw new AppError(status.FORBIDDEN, 'You do not have access to this payment.');
+    }
+
+    return payment;
+};
 
 export const paymentService = {
     createPayment,
     handleWebhook,
-    // getMyPayments,
-    // getPaymentById,
+    getMyPayments,
+    getPaymentById,
 };
