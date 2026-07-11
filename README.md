@@ -90,7 +90,7 @@ prisma/
 ## 🚀 Getting Started (Local)
 
 ```bash
-git clone [https://github.com/imranh-dev1/Rent_Nest_Server](https://github.com/imranh-dev1/Rent_Nest_Server)
+git clone https://github.com/imranh-dev1/Rent_Nest_Server
 cd rentnest-backend
 npm install
 cp .env.example .env      # fill in your values, see below
