@@ -125,7 +125,7 @@ STRIPE_SECRET_KEY=""
 STRIPE_WEBHOOK_SECRET=""
 
 ADMIN_EMAIL="admin@rentnest.com"
-ADMIN_PASSWORD="Admin@12345"
+ADMIN_PASSWORD="admin123"
 ```
 
 ---
@@ -135,7 +135,7 @@ ADMIN_PASSWORD="Admin@12345"
 | Field | Value |
 |---|---|
 | Email | `admin@rentnest.com` (or whatever you set in `ADMIN_EMAIL`) |
-| Password | `Admin@12345` (or whatever you set in `ADMIN_PASSWORD`) |
+| Password | `admin123` (or whatever you set in `ADMIN_PASSWORD`) |
 
 ---
 
