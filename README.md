@@ -55,9 +55,11 @@ A production-ready REST API for a modern rental property marketplace built with 
 
 ---
 
-## 🗄 Database Schema
+## 🗄 Database Design & Schema
 
 - **ER Diagram:** https://dbdiagram.io/d/Rent_Nest_Backend-6a51d1594ac62e474c7f5316
+
+---
 
 ## 📁 Project Structure
 
