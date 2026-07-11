@@ -1,0 +1,978 @@
+{
+  "info": {
+    "_postman_id": "9d816162-349b-4e93-b285-bca60679097b",
+    "name": "Rent_Nest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45493852",
+    "_collection_link": "https://go.postman.co/collection/45493852-9d816162-349b-4e93-b285-bca60679097b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "register-user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n// TENANT Role\r\n// {\r\n//   \"name\": \"Imran\",\r\n//   \"email\": \"imran@gmail.com\",\r\n//   \"password\": \"123456\",\r\n//   \"role\": \"TENANT\"\r\n// }\r\n\r\n// LANDLORD Role\r\n// {\r\n//   \"name\": \"Imran\",\r\n//   \"email\": \"imranh.dev1@gmail.com\",\r\n//   \"password\": \"123456\",\r\n//   \"role\": \"LANDLORD\"\r\n// }\r\n\r\n\r\n// ADMIN Role\r\n// {\r\n//   \"name\": \"Admin\",\r\n//   \"email\": \"admin@rentnest.com\",\r\n//   \"password\": \"admin123\",\r\n//   \"role\": \"ADMIN\"  // database normaly change the Role\r\n// }\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login-user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n// TENANT Role\r\n// {\r\n//   \"email\": \"imran@gmail.com\",\r\n//   \"password\": \"123456\"\r\n// }\r\n// TENANT Role\r\n{\r\n  \"email\": \"imran1@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n\r\n// LANDLORD Role\r\n// {\r\n//   \"email\": \"imranh.dev1@gmail.com\",\r\n//   \"password\": \"123456\"\r\n// }\r\n\r\n\r\n// ADMIN Role\r\n// {\r\n//   \"email\": \"admin@rentnest.com\",\r\n//   \"password\": \"admin123\"\r\n// }\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-me",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"imranh.dev1@gmail.com\",\r\n  \"password\": \"123456\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-me",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Imran Hossain\",\r\n  \"phone\": \"01868634721\",\r\n  \"profileImg\": \"https://lh3.googleusercontent.com/ogw/AF2bZyhK2UCtfuHOO5TPNt24EOgAQTJI4sJDeMvK1DKR2akH8g=s64-c-mo\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/update-me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "update-me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "create-category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"House\",\r\n  \"description\": \"Independent residential houses.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-category-by-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/categories/d40abd0d-e98d-40ee-a296-79569567d748",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories",
+                "d40abd0d-e98d-40ee-a296-79569567d748"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-Category",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n    \"name\": \"Shared Room.\",\r\n    \"description\": \"Shared accommodation with other tenants..\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/categories/d40abd0d-e98d-40ee-a296-79569567d748",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories",
+                "d40abd0d-e98d-40ee-a296-79569567d748"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleted-category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/categories/87c90448-9bc4-465f-a335-733cadaeffe8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories",
+                "87c90448-9bc4-465f-a335-733cadaeffe8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "properties",
+      "item": [
+        {
+          "name": "create-property",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Modern Apartment in Dhaka\",\r\n  \"description\": \"A fully furnished apartment near Gulshan.\",\r\n  \"address\": \"Road 11, Gulshan\",\r\n  \"city\": \"Dhaka\",\r\n  \"rentAmount\": 25000,\r\n  \"bedrooms\": 3,\r\n  \"bathrooms\": 2,\r\n  \"area\": 1400,\r\n  \"amenities\": [\r\n    \"WiFi\",\r\n    \"Parking\",\r\n    \"Lift\",\r\n    \"Generator\"\r\n  ],\r\n  \"images\": [\r\n    \"https://example.com/property1.jpg\",\r\n    \"https://example.com/property2.jpg\"\r\n  ],\r\n  \"categoryId\": \"3144b38f-eed2-4c1f-a7f6-3ed921ca4a9c\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-property-by-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/92478833-5d33-443b-b933-69bb19f1fe10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "92478833-5d33-443b-b933-69bb19f1fe10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-property",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Modern Apartment in Dhaka.\",\r\n  \"description\": \"A fully furnished apartment near Gulshan..\",\r\n  \"address\": \"Road 12, Gulshan-1\",\r\n  \"city\": \"Dhaka\",\r\n  \"rentAmount\": 28000,\r\n  \"bedrooms\": 3,\r\n  \"bathrooms\": 3,\r\n  \"area\": 1600,\r\n  \"amenities\": [\r\n    \"WiFi\",\r\n    \"Parking\",\r\n    \"Lift\",\r\n    \"Generator\",\r\n    \"Gash\"\r\n  ],\r\n  \"images\": [\r\n    \"https://example.com/property1.jpg\",\r\n    \"https://example.com/property2.jpg\",\r\n    \"https://example.com/property3.jpg\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/92478833-5d33-443b-b933-69bb19f1fe10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "92478833-5d33-443b-b933-69bb19f1fe10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-property",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/92478833-5d33-443b-b933-69bb19f1fe10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "92478833-5d33-443b-b933-69bb19f1fe10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-my-properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/properties/my-properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "my-properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "change-availability",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"availability\": \"AVAILABLE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/properties/036de06a-a30b-4138-bd22-902eba4d9173/availability",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "036de06a-a30b-4138-bd22-902eba4d9173",
+                "availability"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "rental-requests",
+      "item": [
+        {
+          "name": "create-rental",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"propertyId\": \"4b0399e2-ca2b-4b0f-89ce-381fa65c0ac8\",\r\n  \"leaseMonths\": 12,\r\n  \"message\": \"I am interested in renting this apartment for one year...\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/rental-requests",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rental-requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-my-rental",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/rental-requests/580ff819-aba8-4e60-ae3e-5a87576c566c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rental-requests",
+                "580ff819-aba8-4e60-ae3e-5a87576c566c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-landlord-rental-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/rental-requests/landlord",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rental-requests",
+                "landlord"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-rental-request-status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"APPROVED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/rental-requests/95ac0efc-ccaf-4fdd-b6b5-eb5ebc5435c0/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rental-requests",
+                "95ac0efc-ccaf-4fdd-b6b5-eb5ebc5435c0",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancel-rental-request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/rental-requests/f40b68ad-d3ef-4f4f-b0ea-6b4ce0054a23/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rental-requests",
+                "f40b68ad-d3ef-4f4f-b0ea-6b4ce0054a23",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-Single-Rental-Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "reviews",
+      "item": [
+        {
+          "name": "create-review",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"rating\": 5,\r\n  \"comment\": \"Excellent property. Clean environment, secure area, and a very cooperative landlord.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/328b1fde-1deb-4f3d-af15-77a14157bbc4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "328b1fde-1deb-4f3d-af15-77a14157bbc4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-property-reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/328b1fde-1deb-4f3d-af15-77a14157bbc4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "328b1fde-1deb-4f3d-af15-77a14157bbc4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-review",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"rating\": 4,\r\n  \"comment\": \"Good property. Clean environment, secure area, and a very cooperative landlord.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/d68b2ea2-d2d5-4762-9d17-1aba33221110",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "d68b2ea2-d2d5-4762-9d17-1aba33221110"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-review",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/fbeea992-9667-4ac2-ab10-60eae7b34af9",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "fbeea992-9667-4ac2-ab10-60eae7b34af9"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "admin-dashboard",
+      "item": [
+        {
+          "name": "get-Dashboard-Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-user-status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"ACTIVE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/admin/users/5c5137b5-7e45-4f25-876d-6f843cc344ae/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "users",
+                "5c5137b5-7e45-4f25-876d-6f843cc344ae",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-All-Properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-Property-By-Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/properties/cae33191-b761-4014-a5db-7d59a0770831",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "properties",
+                "cae33191-b761-4014-a5db-7d59a0770831"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-Property",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/properties/8c636702-7ad3-48d3-b5a4-460470d0128c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "properties",
+                "8c636702-7ad3-48d3-b5a4-460470d0128c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-All-Rental-Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/rental-requests/f150e6d2-51f6-422a-86ac-f89046cbced2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "rental-requests",
+                "f150e6d2-51f6-422a-86ac-f89046cbced2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-All-Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-Review",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/admin/reviews/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "reviews",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "payments",
+      "item": [
+        {
+          "name": "create-Payment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rentalRequestId\": \"580ff819-aba8-4e60-ae3e-5a87576c566c\",\r\n    \"provider\": \"STRIPE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/payments/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "payments",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "grt-my-payments",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/payments/webhook",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "payments",
+                "webhook"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-payment-by-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/payments/547a7fb4-bbad-42dc-87eb-661ee2310dc9",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "payments",
+                "547a7fb4-bbad-42dc-87eb-661ee2310dc9"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
