@@ -70,18 +70,18 @@ src/
 ├── lib/                
 ├── middlewares/        # auth (role-based), validateRequest, notFound
 ├── modules/
-│   ├── auth/            # register, login, refresh-token, me
-│   ├── category/         # admin CRUD + public read
-│   ├── property/          # public browse/filter + landlord CRUD + availability
-│   ├── rental/             # rental request lifecycle (PENDING → COMPLETED)
-│   ├── payment/             # Stripe checkout + webhook confirmation
-│   ├── review/               # tenant reviews (only after COMPLETED rental)
-│   └── admin/                 # user management, platform overview
+│   ├── auth/           # register, login, refresh-token, me
+│   ├── category/       # admin CRUD + public read
+│   ├── property/       # public browse/filter + landlord CRUD + availability
+│   ├── rental/         # rental request lifecycle (PENDING → COMPLETED)
+│   ├── payment/        # Stripe checkout + webhook confirmation
+│   ├── review/         # tenant reviews (only after COMPLETED rental)
+│   └── admin/          # user management, platform overview
 ├── utils/              # asyncHandler, ApiResponse
 ├── app.ts              # Express app + route mounting
-└── server.ts            # entry point (DB connect + listen)
+└── server.ts           # entry point (DB connect + listen)
 prisma/
-└── schema.prisma        # Users, Categories, Properties, RentalRequests, Payments, Reviews
+└── schema.prisma       # Users, Categories, Properties, RentalRequests, Payments, Reviews
 
 ```
 
@@ -153,7 +153,7 @@ ADMIN_PASSWORD="admin123"
 
 ---
 
-## 📋 API Endpoints
+## 📋 API Endpoints : https://github.com/imranh-dev1/Rent_Nest_Backend/blob/main/Rent_Nest.postman_collection.json
 
 ### Auth
 | Method | Endpoint | Access |
