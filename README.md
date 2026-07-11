@@ -10,7 +10,7 @@ A production-ready REST API for a modern rental property marketplace built with 
 ![Stripe](https://img.shields.io/badge/Stripe-Payment-635BFF)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**Live API:** `https://rent-nest-server-red.vercel.app/` 
+**Live API:** `[https://rent-nest-server-red.vercel.app/](https://rent-nest-server-red.vercel.app/)` 
 
 ---
 
