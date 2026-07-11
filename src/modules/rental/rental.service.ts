@@ -97,6 +97,51 @@ const getMyRentalRequests = async (tenantId: string) => {
     return rentalRequests;
 }
 
+const getSingleRentalRequest = async (
+    rentalRequestId: string,
+    userId: string
+) => {
+    const rentalRequest = await prisma.rentalRequest.findUniqueOrThrow({
+        where: {
+            id: rentalRequestId,
+        },
+        include: {
+            tenant: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                },
+            },
+            property: {
+                include: {
+                    landlord: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true,
+                        },
+                    },
+                    category: true,
+                },
+            },
+            payment: true,
+        },
+    });
+
+    const isTenant = rentalRequest.tenantId === userId;
+    const isLandlord = rentalRequest.property.landlordId === userId;
+
+    if (!isTenant && !isLandlord) {
+        throw new AppError(
+            status.FORBIDDEN,
+            "You are not authorized to view this rental request."
+        );
+    }
+
+    return rentalRequest;
+};
+
 const getLandlordRentalRequests = async (landlordId: string) => {
     const rentalRequests = await prisma.rentalRequest.findMany({
         where: {
@@ -249,6 +294,7 @@ const cancelRentalRequest = async (rentalRequestId: string, tenantId: string) =>
 export const rentalRequestsService = {
     createRentalRequest,
     getMyRentalRequests,
+    getSingleRentalRequest,
     getLandlordRentalRequests,
     updateRentalRequestStatus,
     cancelRentalRequest

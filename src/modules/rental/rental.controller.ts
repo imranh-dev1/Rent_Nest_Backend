@@ -30,6 +30,24 @@ const getMyRentalRequests = asyncHandler(async (req: Request, res: Response) => 
     });
 });
 
+const getSingleRentalRequest = asyncHandler(
+    async (req: Request, res: Response) => {
+        const userId = req.user!.id;
+
+        const result = await rentalRequestsService.getSingleRentalRequest(
+            req.params.id as string,
+            userId
+        );
+
+        sendResponse(res, {
+            success: true,
+            statusCode: status.OK,
+            message: "Rental request retrieved successfully.",
+            data: result,
+        });
+    }
+);
+
 const getLandlordRentalRequests = asyncHandler(async (req: Request, res: Response) => {
     const landlordId = req.user!.id;
     const result = await rentalRequestsService.getLandlordRentalRequests(landlordId);
@@ -77,6 +95,7 @@ const cancelRentalRequest = asyncHandler(async (req: Request, res: Response) => 
 export const rentalRequestsController = {
     createRentalRequest,
     getMyRentalRequests,
+    getSingleRentalRequest,
     getLandlordRentalRequests,
     updateRentalRequestStatus,
     cancelRentalRequest
