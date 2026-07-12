@@ -71,7 +71,6 @@ const getPropertyById = asyncHandler(async (req: Request, res: Response) => {
 const deleteProperty = asyncHandler(async (req: Request, res: Response) => {
 
     const result = await adminService.deleteProperty(req.params.id as string);
-
     sendResponse(res, {
         success: true,
         statusCode: status.OK,

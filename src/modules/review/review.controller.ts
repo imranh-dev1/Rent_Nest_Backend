@@ -7,7 +7,7 @@ import { reviewService } from "./review.service";
 const createReview = asyncHandler(async (req: Request, res: Response) => {
     const tenantId = req.user!.id;
     const { propertyId } = req.params;
-    console.log(propertyId)
+    // console.log(propertyId)
     const payload = req.body;
 
     const result = await reviewService.createReview(tenantId, payload, propertyId as string);

@@ -209,6 +209,10 @@ const deleteProperty = async (propertyId: string) => {
         },
     });
 
+    if (existingProperty.availability === PropertyAvailability.RENTED) {
+        throw new AppError(status.BAD_REQUEST, "This property is currently rented and cannot be deleted.");
+    }
+
     await prisma.property.delete({
         where: {
             id: propertyId,

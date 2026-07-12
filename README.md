@@ -199,7 +199,7 @@ ADMIN_PASSWORD="admin123"
 | Method | Endpoint | Access |
 |---|---|---|
 | POST | `/api/payments/create` | Tenant |
-| POST | `/api/payments/webhook` | Stripe (signature-verified) |
+| POST   | `/api/payments/webhook`   | Stripe (signature-verified) — automated |
 | GET | `/api/payments` | Owner |
 | GET | `/api/payments/:id` | Owner |
 
@@ -216,7 +216,7 @@ ADMIN_PASSWORD="admin123"
 |---|---|---|
 | GET | `/api/admin/dashboard` | Admin (platform stats overview) |
 | GET | `/api/admin/users` | Admin |
-| PATCH | `/api/admin/users/:id/status` | Admin (ban/unban — body: `{ "status": "ACTIVE" \| "BANNED" }`) |
+| PATCH | `/api/admin/users/:id/status` | Admin (ban/unban — body: `{ "status": "ACTIVE" \| "BLOCKED" }`) |
 | GET | `/api/admin/properties` | Admin |
 | GET | `/api/admin/properties/:id` | Admin |
 | DELETE | `/api/admin/properties/:id` | Admin |

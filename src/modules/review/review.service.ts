@@ -15,12 +15,12 @@ const createReview = async (tenantId: string, payload: ICreateReview, propertyId
         where: {
             tenantId,
             propertyId,
-            status: RentalStatus.COMPLETED,
+            status: RentalStatus.ACTIVE,
         },
     });
 
     if (!completedRental) {
-        throw new AppError(status.BAD_REQUEST, "You can only review properties after your rental is completed.");
+        throw new AppError(status.BAD_REQUEST, "You can only review properties after your rental is ACTIVE.");
     }
 
     const existingReview = await prisma.review.findUnique({
