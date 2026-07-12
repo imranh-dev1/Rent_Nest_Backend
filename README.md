@@ -183,14 +183,14 @@ ADMIN_PASSWORD="admin123"
 | PATCH | `/api/properties/:id` | Landlord (owner only) |
 | PATCH | `/api/properties/:id/availability` | Landlord (owner only) |
 | DELETE | `/api/properties/:id` | Landlord (owner only) |
-| GET | `/api/properties/my-properties` | Landlord |
+| GET | `/api/properties/my-properties` | Landlord (owner only) |
 
 ### Rental Requests
 | Method | Endpoint | Access |
 |---|---|---|
 | POST | `/api/rental-requests` | Tenant |
-| GET | `/api/rental-requests` | Tenant (own) |
-| GET | `/api/rental-requests/:id` | Owner |
+| GET | `/api/rental-requests/my-requests` | Tenant |
+| GET | `/api/rental-requests/:id` | Landlord and Tenant (owner only) |
 | GET | `/api/rental-requests/landlord` | Landlord |
 | PATCH | `/api/rental-requests/:id/status` | Landlord (APPROVED / REJECTED only) |
 | PATCH | `/api/rental-requests/:id/cancel` | Tenant |

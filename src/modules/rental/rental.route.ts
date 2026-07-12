@@ -11,9 +11,9 @@ router.post("/", auth(Role.TENANT), validateRequest(rentalRequestValidation.crea
 
 router.get("/my-requests", auth(Role.TENANT), rentalRequestsController.getMyRentalRequests);
 
-router.get("/:id", auth(Role.TENANT, Role.LANDLORD), rentalRequestsController.getSingleRentalRequest);
-
 router.get("/landlord", auth(Role.LANDLORD), rentalRequestsController.getLandlordRentalRequests);
+
+router.get("/:id", auth(Role.TENANT, Role.LANDLORD), rentalRequestsController.getSingleRentalRequest);
 
 router.patch("/:id/status", auth(Role.LANDLORD), validateRequest(rentalRequestValidation.updateRentalRequestStatusSchema), rentalRequestsController.updateRentalRequestStatus);
 

@@ -30,22 +30,18 @@ const getMyRentalRequests = asyncHandler(async (req: Request, res: Response) => 
     });
 });
 
-const getSingleRentalRequest = asyncHandler(
-    async (req: Request, res: Response) => {
-        const userId = req.user!.id;
+const getSingleRentalRequest = asyncHandler(async (req: Request, res: Response) => {
+    const userId = req.user!.id;
 
-        const result = await rentalRequestsService.getSingleRentalRequest(
-            req.params.id as string,
-            userId
-        );
+    const result = await rentalRequestsService.getSingleRentalRequest(req.params.id as string, userId);
 
-        sendResponse(res, {
-            success: true,
-            statusCode: status.OK,
-            message: "Rental request retrieved successfully.",
-            data: result,
-        });
-    }
+    sendResponse(res, {
+        success: true,
+        statusCode: status.OK,
+        message: "Rental request retrieved successfully.",
+        data: result,
+    });
+}
 );
 
 const getLandlordRentalRequests = asyncHandler(async (req: Request, res: Response) => {
