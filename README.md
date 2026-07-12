@@ -260,7 +260,7 @@ Copy the printed `whsec_...` into `STRIPE_WEBHOOK_SECRET` in `.env`.
  
 ## 📄 API Documentation
  
-- Postman collection: `docs/RentNest.postman_collection.json`
+- Postman collection: https://github.com/imranh-dev1/Rent_Nest_Backend/blob/main/Rent_Nest.postman_collection.json
 
 
 ## 👨‍💻 Author
